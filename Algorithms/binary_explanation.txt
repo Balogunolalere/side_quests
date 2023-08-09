@@ -1,0 +1,32 @@
+The goal of binary search is to efficiently find an element in a sorted array. We take advantage of the sorting to narrow down where the element could be instead of checking every single element.
+
+The inputs are:
+
+    arr - the sorted array to search
+    target - the value we want to find
+
+The output is:
+
+    The index of the target element if found, -1 otherwise
+
+The key steps are:
+
+    We start by setting bounds on the possible range where the target could be:
+        low = 0 (the lowest index)
+        high = len(arr) - 1 (the highest index)
+    We calculate the middle index between low and high:
+        mid = (low + high) // 2 (integer division to get mid-point)
+    We check if arr[mid] equals the target.
+        If so, we return mid as the index where the target is found.
+    Otherwise, we perform a comparison:
+        If arr[mid] < target, the target must be in the upper half
+        If arr[mid] > target, the target must be in the lower half
+    Based on the comparison, we narrow the bounds:
+        If target is in upper half, set low = mid + 1
+        If target is in lower half, set high = mid - 1
+    We repeat steps 2-5, recalculating mid each time and comparing it to the target.
+    The search ends when low > high. This means we've narrowed the bounds until they overlap and no match was found. We return -1.
+
+The while loop handles repeating steps 2-5, halving the search space each iteration. The runtime is O(log n) since we divide the problem space in half each time.
+
+With this search process, we efficiently hone in on the target index without checking every element! The binary search algorithm leverages sorting, bounds, and repeated subdivision to optimize the search.
